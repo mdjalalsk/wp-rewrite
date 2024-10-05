@@ -19,10 +19,11 @@ class Wp_Rewrite_test {
 
     public function init() {
         add_rewrite_tag('%test-rewrite%', '([^&]+)');
+        add_rewrite_tag('%rewrite_value%', '([^&]+)');
 
         add_rewrite_rule(
-            'test-rewrite',
-            'index.php?test-rewrite=true',
+            'test-rewrite/([^/]+)/?$',
+            'index.php?test-rewrite=true&rewrite_value=$matches[1]',
             'top'
         );
     }
